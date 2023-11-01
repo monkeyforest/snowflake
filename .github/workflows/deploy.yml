@@ -19,4 +19,4 @@ jobs:
         server: mu-coding.club
         username: mucode@mu-coding.club
         password: MineCraft271828
-        local-dir: mucodewebsite
+        local-dir: mucodewebsite/
