@@ -16,7 +16,7 @@ jobs:
     - name: Deploy to FTP
       uses: SamKirkland/FTP-Deploy-Action@4.0.0  # Use the latest version if available
       with:
-        server: ftp.mu-coding.club
+        server: mu-coding.club
         username: mucode@mu-coding.club
         password: MineCraft271828
     
