@@ -1,188 +1,231 @@
-body
-{
-	font-family: sans-serif;
-	background-color: #d9d5ca;
+/* Reset default margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
 }
 
-.topbar
-{
-  background-color: #0b1213;
-  color: #d9d5ca;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  height: 90px;
-  width: 100%;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: radial-gradient(circle, #302f2e, #111111);
+    overflow: hidden; /* Prevent the canvas from causing scrollbars */
 }
 
-.main-title
-{
-	display: inline;
-  font-size: 55px;
-  left: 150px;
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place it behind other content */
 }
 
-.navbar
-{
-  background-color: #d11734;
-  color: white;
-  padding: 0px;
-  margin: 0px;
-  position: fixed;
-  left: 0px;
-  top: 90px;
-  height: 48px;
-  display: inline-block;
-  width: 100%;
-  z-index: 0;
+/* CSS to hide the menu bar when scrolling down */
+.hidden-menu .navbar {
+    position: fixed;
+    top: -100px;
+    transition: top 0.3s;
 }
 
-
-nav
-{
-	display: inline;
-	position: absolute;
-	padding-left: 93px;
-	color: red;
+.shown-menu .navbar {
+    top: 0;
 }
 
-ul
-{
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	font-weight: bold;
+.hamburger-menu {
+    display: block;
+    cursor: pointer;
+    width: 30px;
+    height: 20px;
+    position: relative;
 }
 
-
-li
-{
-	float: left;
-	padding: 0px;
+.line {
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
 }
 
-li a
-{
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 15px;
-	text-decoration: none;
+/* Add styles to create the open (X) and close (hamburger) state */
+.hamburger-menu.open .line:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
 }
 
-li a:hover
-{
-	background-color: #0b1213;
-	color: whites;
+.hamburger-menu.open .line:nth-child(2) {
+    opacity: 0;
 }
 
-.current
-{
-  background-color: #0b1213;
-}
-.main-container
-{
-	background-color: white;
-	opacity: 0.65;
-	color: black;
-	font-size: 1em;
-	font-weight: normal;
-	position: relative;
-	padding: 25px;
-	left: 50px;
-	top: 140px;
-	width: 75%;
-	height: 2080px;
-  margin: auto;
-	box-shadow: 0px 0px 25px -2px white;
-  z-index: -2;
+.hamburger-menu.open .line:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
-
-.footerbar
-{
-	background-color: #656565;
-	color: #d9d5ca;
-  font-size: 0.75em;
-	padding: 5px;
-	margin: 0px;
-	position: fixed;
-	left: 0px;
-	bottom: 0px;
-	height: 40px;
-	width: 100%;
-	border-top: 10px solid black;
+/* CSS to initially hide the menu content */
+.hidden {
+    display: none;
 }
 
-
-@media screen and (min-width: 800px)
-{
-	body
- 	{
-
-	 }
+.topbar {
+    background: conic-gradient(from -45deg, #292a2c, #0a071a);
+    color: #d9d5ca;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
 }
 
-@media screen and (min-width: 1000px)
-{
-	body
-	{
-
-	}
+.main-title {
+    font-size: 1.5rem;
+    margin: 0;
 }
 
-.wrap
-{
-  display: inline;
-  float: left;
-  margin-right: 15px;
+.navbar {
+    background-color: #404045;
+    color: white;
+    position: fixed;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
 }
 
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #0b1213;
+    color: white;
+}
+
+.current {
+    background-color: #0b1213;
+}
+
+.main-container {
+    background-color: rgb(38, 38, 40);
+    opacity: .9;
+    color: rgb(236, 230, 230);
+    font-size: 1em;
+    font-weight: normal;
+    position: relative; /* Set the position to relative */
+    padding: 25px;
+    left: 50px;
+    top: 140px;
+    width: 75%;
+    height: auto;
+    margin: auto;
+    /* box-shadow: 0px 0px 250px -2px rgb(23, 23, 23); */
+    z-index: 1; /* Higher z-index for the main text body */
+}
+
+.footerbar {
+    background-color: #656565;
+    color: #d9d5ca;
+    font-size: 0.75em;
+    padding: 5px;
+    margin: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    border-top: 10px solid black;
+}
+
+@media screen and (min-width: 800px) {
+    .topbar {
+        background: conic-gradient(from -45deg, #292a2c, #0a071a);
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .topbar {
+        background: conic-gradient(from -45deg, #292a2c, #0a071a);
+    }
+}
+
+.wrap {
+    display: inline;
+    float: left;
+    margin-right: 15px;
+}
 
 .box {
-	width: 80%;
-	background-color: transparent;
-	box-shadow:0 5px 10px 0 rgba(0,0,0,0.2),0 5px 20px 0 rgba(0,0,0,0.25);
-	margin-bottom: 20px;
-	margin-top: 20px;
+    width: 80%;
+    background-color: transparent;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 5px 20px 0 rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
+
 .box-top-orange {
-	background-color: orange;
-	padding-left: 10px;
-	padding-right: 10px;
+    background-color: orange;
+    padding-left: 10px;
+    padding-right: 10px;
 }
+
 .box-top-purple {
-	background-color: purple;
-	padding-left: 10px;
-	padding-right: 10px;
-	color: white;
+    background-color: purple;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
 }
+
 .box-top-gray {
-	background-color: #d9d5ca;
-	padding-left: 10px;
-	padding-right: 10px;
-	color: black;
+    background-color: #d9d5ca;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: black;
 }
+
 .box-content {
-	background-color: white;
-	padding-left: 10px;
-		padding-right: 10px;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-
-.clearfix:after,.clearfix:before {content:"";display:table;clear:both}
-
-.subheading {line-height: 1.4; font-weight: bold;}
-
-label
-{
-		margin: 0px;
-		padding: 10px;
+.clearfix:after,
+.clearfix:before {
+    content: "";
+    display: table;
+    clear: both;
 }
 
-input, textarea
-{
-		margin: 10px;
-		padding: 10px;
+.subheading {
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+label {
+    margin: 0px;
+    padding: 10px;
+}
+
+input,
+textarea {
+    margin: 10px;
+    padding: 10px;
 }
