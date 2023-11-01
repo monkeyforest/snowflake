@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       
     - name: Deploy to FTP
       uses: SamKirkland/FTP-Deploy-Action@4.0.0  # Use the latest version if available
@@ -19,4 +19,4 @@ jobs:
         server: mu-coding.club
         username: mucode@mu-coding.club
         password: MineCraft271828
-    
+        local-dir: snowflake/mucodingwebsite/
